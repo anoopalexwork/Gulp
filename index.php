@@ -1,7 +1,7 @@
 <?php include("top.php"); ?>
 
 <body onload="setupBody()">
-    <h1 id="headline"></h1>
+    <h1 id="headline2"></h1>
     <section>
         <table id="mainMenu"><tr><td id="dateBox"><b><input id="selectDate" type="date"></input></b></td><td id="foodBox">Food</td><td id="kgBox">Weight</td></tr></table>
     </section>
