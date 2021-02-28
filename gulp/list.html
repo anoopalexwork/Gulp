@@ -1,0 +1,196 @@
+<html>
+<head>
+    <link rel="stylesheet" href="list.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript">
+        
+        function Food(id,time,desc,amount) {
+            this.id = id;
+            this.time = time;
+            this.name = desc;
+            this.amount = amount;
+            
+        }
+        
+        function dayList(){
+            this.bfast = new Array();
+            this.lunch = new Array();
+            this.dinner = new Array();
+            this.extras = new Array();
+            this.suggest = new Array();
+            
+            
+
+            this.add= function (time,me){
+                const title = {"bfast":"Breakfast", "lunch":"Lunch", "dinner":"Dinner", "extras":"Extras"};
+
+                fid = me.setIndex(time,me);
+                alert(`id:${fid}`);
+                fname  = window.prompt("Name:");
+                famt = window.prompt("Amount:");
+                var titleText = title[`${time}`];
+                switch(time){
+                    case "bfast": theList=this.bfast;
+                    case "lunch": theList=this.lunch;;
+                    case "dinner":theList=this.dinner;
+                    case "extras":theList=this.extras;
+                }
+                
+                var newFood = new Food(fid,time,fname,famt);
+
+                me.bfast.push(newFood);
+                alert(me.bfast[me.setIndex('bfast',me)-1].name);
+                
+                var tableItems = document.getElementsByClassName(`.${time}Table.foodLine`);
+                
+                if (tableItems != undefined){
+                     
+                    alert("newer"+me.bfast[me.bfast.length-1].name);
+                    
+                    alert("items"+tableItems.innerHTML);
+                    tableItems.innerHTML+=`<tr class="foodLine"><td>${me.bfast[me.bfast.length-1].name}</td><td>${me.bfast[me.bfast.length-1].amount}</td><td class="editBtn">Edit</button></td></tr>`;
+                    var sect = document.getElementById(`${time}`);
+                    sect.innerHTML=`<p><h2><b>${titleText}</b><br><table class="foodList ${time}Table">`+
+                        
+                        tableItems.innerHTML+`</table><button class="addNew" onclick="today.add('${time}',today);">Add New</button></p><br>`;
+                }
+                else {
+                    alert("new"+this.bfast[0].name+this.bfast[0].amount);
+                    var sect = document.getElementById(`${time}`);
+                    var tableItems = document.getElementsByClassName(`.${time}Table.foodLine`);
+                    sect.innerHTML=`<p><h2><b>${titleText}</b><br><table class="foodList ${time}Table"><tr class="foodLine"><td>${me.bfast[0].name}</td><td>${me.bfast[0].amount}</td><td class="editBtn">Edit</button></td></tr></table><button class="addNew" onclick="today.add('${time}',today);">Add New</button></p><br>`;
+                }
+                me.redraw(`${time}`,me);
+                
+            }
+
+            this.redraw=function (time, tothis){
+                const title = {"bfast":"Breakfast", "lunch":"Lunch", "dinner":"Dinner", "extras":"Extras"};
+                var theList,foodLines;
+                var titleText = title[`${time}`];
+                
+                var tableText=`<p><h2><b>${titleText}</b><br>
+                <table class="foodList ${time}Table">
+                <tr class="foodLine"></tr>`;
+                
+                /*switch(time){
+                    case "bfast": theList=this.bfast;
+                    case "lunch": theList=this.lunch;;
+                    case "dinner":theList=this.dinner;
+                    case "extras":theList=this.extras;
+                }*/
+                
+                if (tothis.bfast != undefined){
+                    for (food in tothis.bfast){
+                        alert("drawing"+food.name);
+                        foodLines+=`<tr class="foodLine"><td>${food.name}</td><td>${food.amount}</td><td class="editBtn">Edit</button></td></tr>`;
+                    }
+                }
+                else foodLines="";
+
+                var addText=`<button class="addNew" onclick="today.add('${time},today')">Add New</button></p><br>`;
+                return tableText+foodLines+`</table>`+addText;
+            }
+
+            
+
+            
+
+            this.setIndex = function(time,me){
+                switch (time) {
+                    case "bfast" : return me.bfast.length;
+                    case "lunch" : return this.lunch.length;
+                    case "dinner": return this.dinner.length;
+                    case "extras": return this.extras.length;
+                } 
+
+            }
+
+
+        
+        }
+        
+    today = new dayList(); 
+    function date2Text(){
+        const months = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+        const days = new Array("Sun","Mon","Tue","Wed", "Thu", "Fri", "Sat");
+        var dateObj = new Date();
+        var strDate = days[dateObj.getDay()] + " " + dateObj.getDate() + "-" + months[dateObj.getMonth()]
+        return strDate;
+    }
+
+    function setTitles(strText) {
+        var titleTxt = date2Text() + ` - ${strText}`;
+        document.title = titleTxt;
+        document.getElementById("pghead").innerHTML = `<b>${titleTxt}</b>`;
+    }
+
+    function setDate(){
+        var dateBox = document.getElementById("dateBox");
+        dateBox.innerText = date2Text();
+
+    }
+
+    function setContent(){
+        //Create breakfast block
+        var contentHTML=`<p><h2><b>Breakfast</b><br>
+        <table class="foodList bfastTable"><tr class="foodLine"></tr></table>
+        <button class="addNew" onclick="today.add('bfast',today);">Add New</button></p><br>`;
+        document.getElementById("bfast").innerHTML =  contentHTML;//today.redraw("bfast");
+        
+        //Create lunch block
+        contentHTML=`<p><h2><b>Lunch</b><br>
+        <table class="foodList lunchTable"><tr class="foodLine"></tr></table>
+        <button class="addNew" onclick="today.add('lunch');">Add New</button></p><br>`;
+        document.getElementById("lunch").innerHTML =  contentHTML;//today.redraw("lunch");
+
+        //Create dinner block
+        contentHTML=`<p><h2><b>Dinner</b><br>
+        <table class="foodList dinnerTable"><tr class="foodLine"></tr></table>
+        <button class="addNew">Add New</button></p><br>`;
+        document.getElementById("dinner").innerHTML =  contentHTML;//today.redraw("dinner");
+
+        //Create extras block
+        contentHTML=`<p><h2><b>Extras</b><br>
+        <table class="foodList extrasTable"><tr class="foodLine"></tr></table>
+        <button class="addNew">Add New</button></p><br>`;
+        document.getElementById("extras").innerHTML =  contentHTML;//today.redraw("extras");
+
+
+        
+    }
+
+    function setupBody(){
+        
+        setTitles("Gulp");
+        setDate();
+        setContent();
+
+    }
+    </script>
+</head>
+<body onload="setupBody()">
+<h1 id="pghead"></h1>
+<input type="date"><br>
+<section>
+    <table id="mainMenu"><tr><td id="dateBox"></td><td id="foodBox">Food</td><td id="kgBox">Weight</td></tr></table>
+</section>
+<section id="bfast">
+
+</section>
+
+<section id="lunch">
+
+</section>
+
+<section id="dinner">
+
+</section>
+
+<section id="extras">
+
+</section>
+
+</body>
+</html>
