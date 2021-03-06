@@ -8,10 +8,10 @@ function Food(time) {
 
 function dayList() {
         //Create lists for different times
-        this.bfast = new Array();
-        this.lunch = new Array();
-        this.dinner = new Array();
-        this.extras = new Array();
+        bfast = new Array();
+        lunch = new Array();
+        dinner = new Array();
+        extras = new Array();
         this.suggest = new Array();
         const title = {"bfast":"Breakfast", "lunch":"Lunch", "dinner":"Dinner", "extras":"Extras"};
 
@@ -62,28 +62,15 @@ function dayList() {
 
             for (fItem in currList){
 
-                itemText+=`<section class="foodLine">
-                  <section class="name">${currList[fItem].name}</section>
-                  <section class="amt">${currList[fItem].amount}</section>
-                  <section class="rem"><button class="editBtn" onclick="today.delete(${fItem},'${time}');" >Remove</button></section>
-                </section>`;
+                itemText+=`<section class="foodLine"><section class="name">${currList[fItem].name}</section><section class="amt">${currList[fItem].amount}</section><section class="rem"><button class="editBtn" onclick="today.delete(${fItem},'${time}');" >Remove</button></section></section>`;
 
             }
 
             var sect = document.getElementById(`${time}`);
 
-            sect.innerHTML=`<section>
-              <h2><b>${titleText}</b></h2>
-              <section class="foodList ${time}Table">`+itemText+`</section>
-            </section>
-            <section>
-              <button class="addNew" onactive="newFood = new Food('${time}'); today.add(newFood,'${time}');" onclick="newFood = new Food('${time}'); today.add(newFood,'${time}'); ">Add New</button>
-            </section><br><br>`;
+            sect.innerHTML=`<section><h2><b>${titleText}</b></h2><section class="foodList ${time}Table">`+itemText+`</section></section><section><button class="addNew" onactive="newFood = new Food('${time}'); today.add(newFood,'${time}');" onclick="newFood = new Food('${time}'); today.add(newFood,'${time}'); ">Add New</button></section><br><br>`;
         }
     }
-
-    
-
 
 //new editable object made up of four lists for breakfast, lunch, dinner and extras
 today = new dayList();
@@ -103,12 +90,14 @@ function date2Text(){
 //Draw header section with textual date
 function setupBody(){
 
-    var titleTxt = date2Text() + ` - Gulp`;
+    var titleTxt = date2Text() + ` - Gulp.3`;
     document.title = titleTxt;
     document.getElementById("pghead").innerHTML = `<b>${titleTxt}</b>`;
     //document.getElementById("dateBox").innerHTML = //date2Text();
     //dateBox.innerText = date2Text();
 
     //setContent();
+
+
 
 }
