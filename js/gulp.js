@@ -62,15 +62,28 @@ function dayList() {
 
             for (fItem in currList){
 
-                itemText+=`<section class="foodLine"><section class="name">${currList[fItem].name}</section><section class="amt">${currList[fItem].amount}</section><section class="rem"><button class="editBtn" onclick="today.delete(${fItem},'${time}');" >Remove</button></section></section>`;
+                itemText+=`<section class="foodLine">
+                  <section class="name">${currList[fItem].name}</section>
+                  <section class="amt">${currList[fItem].amount}</section>
+                  <section class="rem"><button class="editBtn" onclick="today.delete(${fItem},'${time}');" >Remove</button></section>
+                </section>`;
 
             }
 
             var sect = document.getElementById(`${time}`);
 
-            sect.innerHTML=`<section><h2><b>${titleText}</b></h2><section class="foodList ${time}Table">`+itemText+`</section></section><section><button class="addNew" onactive="newFood = new Food('${time}'); today.add(newFood,'${time}');" onclick="newFood = new Food('${time}'); today.add(newFood,'${time}'); ">Add New</button></section><br><br>`;
+            sect.innerHTML=`<section>
+              <h2><b>${titleText}</b></h2>
+              <section class="foodList ${time}Table">`+itemText+`</section>
+            </section>
+            <section>
+              <button class="addNew" onactive="newFood = new Food('${time}'); today.add(newFood,'${time}');" onclick="newFood = new Food('${time}'); today.add(newFood,'${time}'); ">Add New</button>
+            </section><br><br>`;
         }
     }
+
+    
+
 
 //new editable object made up of four lists for breakfast, lunch, dinner and extras
 today = new dayList();
@@ -85,34 +98,7 @@ function date2Text(){
 
 }
 
-/*function setContent(){
-    //Create breakfast block
-    var contentHTML=`<p><h2><b>Breakfast</b>
-    <table class="foodList bfastTable"></table>
-    <button class="addNew" onclick="newFood = new Food('bfast'); today.add(newFood,'bfast'); ">Add New</button></p></h2><br>`;
-    document.getElementById("bfast").innerHTML =  contentHTML;//today.redraw("bfast");
 
-    //Create lunch block
-    contentHTML=`<p><h2><b>Lunch</b><br>
-    <table class="foodList lunchTable"></table>
-    <button class="addNew" onclick="newFood = new Food('lunch'); today.add(newFood,'lunch');">Add New</button></p></h2><br>`;
-    document.getElementById("lunch").innerHTML =  contentHTML;//today.redraw("lunch");
-
-    //Create dinner block
-    contentHTML=`<p><h2><b>Dinner</b><br>
-    <table class="foodList dinnerTable"></table>
-    <button class="addNew" onclick="newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button></p></h2><br>`;
-    document.getElementById("dinner").innerHTML =  contentHTML;//today.redraw("dinner");
-
-    //Create extras block
-    contentHTML=`<p><h2><b>Extras</b><br>
-    <table class="foodList extrasTable"></table>
-    <button class="addNew" onclick="newFood = new Food('extras'); today.add(newFood,'extras');">Add New</button></p></h2><br>`;
-    document.getElementById("extras").innerHTML =  contentHTML;//today.redraw("extras");
-
-
-
-}*/
 
 //Draw header section with textual date
 function setupBody(){
