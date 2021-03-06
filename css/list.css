@@ -1,0 +1,55 @@
+* {box-sizing:border-box;}
+hr {color: red;height:1%;background-color: black;}
+h1 {text-align: center;}
+
+#mainMenu {width:100%; display:flex; border-collapse: collapse; background-color: red;}
+#dateBox, #foodBox, #kgBox {font-size: x-large;}
+.table {width:100%; display:flex;flex-direction: column;}
+.foodList {width:100%;display:flex;flex-direction: column;border:2px solid black;}
+
+.foodLine {width:100%;display:flex;flex-wrap: wrap;color:black;border:2px solid green; }
+.name {width:70%;background-color: cyan;}
+.amt {width:15%; background-color: yellow;}
+.rem {width:15%;background-color: red}
+.editBtn {width:100%;background-color: red;  }
+
+.addNew {background-color:green; float:left;font-size: xx-large}
+
+@media only screen and (min-width: 600px) {
+  * {box-sizing:border-box;}
+  hr {color: red;size:5px}
+  h1 {text-align: center;}
+  #mainMenu {width:100%; display:flex; border-collapse: collapse; background-color: orange;}
+  #dateBox, #foodBox, #kgBox {font-size: x-large;}
+  .table {width:100%; display:flex;flex-direction: column;}
+  .foodList {width:100%%;display:flex;flex-direction: column;border:2px solid black;}
+
+  .foodLine {width:100%;display:flex;flex-wrap: wrap;color:black;border:2px solid green; }
+  .name {width:80%;background-color: cyan;}
+  .amt {width:10%; background-color: yellow;}
+  .rem {width:10%;background-color: red}
+  .editBtn {width:100%;background-color: red; }
+  .amt {width:10%; background-color: yellow;}
+  .rem {width:10%;background-color: red}
+
+  .addNew {background-color:green; float:left;font-size: x-large}
+}
+@media only screen and (min-width: 1200px) {
+  * {box-sizing:border-box;}
+  hr {color: red;size:15px}
+  h1 {text-align: center;}
+  :root {--remTxt:"Remove"}
+  #mainMenu {width:100%; display:flex; border-collapse: collapse; background-color: blue;}
+  #dateBox, #foodBox, #kgBox {font-size: x-large;}
+  .table {width:100%; display:flex;flex-direction: column;}
+  .foodList {width:100%;display:flex;flex-direction: column;flex-wrap: wrap; border:2px solid black;}
+
+  .foodLine {width:100%;display:flex;flex-wrap: wrap;color:black;border:1px solid green; }
+  .name {width:80%;background-color: cyan;}
+  .amt {width:10%; background-color: yellow;}
+  .rem {width:10%;background-color: red}
+  .editBtn {width:100%;background-color: red; }
+
+
+  .addNew {background-color:green; float:left;font-size: x-large}
+}
