@@ -90,7 +90,7 @@ function date2Text(){
 //Draw header section with textual date
 function setupBody(){
 
-    var titleTxt = date2Text() + ` - Gulp`;
+    var titleTxt = date2Text() + ` - GulpMaster`;
     document.title = titleTxt;
     document.getElementById("pghead").innerHTML = `<b>${titleTxt}</b>`;
     //document.getElementById("dateBox").innerHTML = //date2Text();
@@ -100,23 +100,4 @@ function setupBody(){
 
 
 
-}
-
-
-
-
-
-
-function asyncCallback()
-{
-  alert("started async");
-  if (this.readyState == 4) {
-    if (this.status == 200) {
-      if (this.responseText != null) {
-        document.getElementById('info').innerHTML = this.responseText;
-      }
-      else alert("Communication error: No data received");
-    }
-    else alert( "Communication error: " + this.statusText);
-  }
 }
