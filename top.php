@@ -7,6 +7,6 @@
     <script type="text/javascript" src="js/gulp.js"></script>
     <script "type=text/javascript" src="js/xmlPHP.js"></script>
     <script>
-      dataObj = new asyncObj("google.com");
+      dataObj = new asyncObj("sqlconn.php","localhost/hpaws/min/");
     </script>
 </head>

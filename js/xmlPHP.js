@@ -1,11 +1,15 @@
-var asyncObj = function(txt){
+//Define the asyncObj class
+
+var asyncObj = function(file,txt){
 var def = txt;
 var params = "url="+txt;
 var request = asyncRequest();
-request.open("POST", "urlpost.php", true);
+request.open("POST", file, true);
 request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 //request.setRequestHeader("Content-length", params.length);
 //request.setRequestHeader("Connection", "close");
+
+
 request.onreadystatechange = function(){
   if (this.readyState == 4)
 {
@@ -14,7 +18,7 @@ if (this.status == 200)
 if (this.responseText != null)
 {
   document.getElementById('info').innerHTML = this.responseText;
-  alert(def);
+
 }
 else alert("Communication error: No data received")
 }
@@ -25,6 +29,8 @@ else alert( "Communication error: " + this.statusText)
 request.send(params);
 
 }
+
+
 this.asyncRequest = function(){
 
     try // Non-IE browser?
