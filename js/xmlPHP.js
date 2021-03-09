@@ -1,8 +1,8 @@
 //Define the asyncObj class
 
-var asyncObj = function(file,txt){
+var asyncObj = function(file,p,txt){
 var def = txt;
-var params = "url="+txt;
+var params = p+"="+txt;
 var request = asyncRequest();
 request.open("POST", file, true);
 request.setRequestHeader("Content-type","application/x-www-form-urlencoded");

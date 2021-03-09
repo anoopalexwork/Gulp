@@ -11,8 +11,8 @@ $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die("Fatal Error");
 
 echo "Connected....";
-
-$query = "SELECT * FROM dayinfo";
+if (isset($_POST['q'])) $query = $_POST['q'];
+//$query = "SELECT * FROM dayinfo";
 $result = $conn->query($query);
 if (!$result) die("Fatal Error");
 $rows = $result->num_rows;
