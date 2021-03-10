@@ -8,10 +8,10 @@ function Food(time) {
 
 function dayList() {
         //Create lists for different times
-        bfast = new Array();
-        lunch = new Array();
-        dinner = new Array();
-        extras = new Array();
+        this.bfast = new Array();
+        this.lunch = new Array();
+        this.dinner = new Array();
+        this.extras = new Array();
         this.suggest = new Array();
         const title = {"bfast":"Breakfast", "lunch":"Lunch", "dinner":"Dinner", "extras":"Extras"};
 
