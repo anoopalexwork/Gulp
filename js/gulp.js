@@ -8,18 +8,19 @@ function Food(time) {
 
 function dayList() {
         //Create lists for different times
-        bfast = new Array();
-        lunch = new Array();
-        dinner = new Array();
-        extras = new Array();
+        this.bfast = new Array();
+        this.lunch = new Array();
+        this.dinner = new Array();
+        this.extras = new Array();
         this.suggest = new Array();
         const title = {"bfast":"Breakfast", "lunch":"Lunch", "dinner":"Dinner", "extras":"Extras"};
 
         //Add a new Food object to the list
         this.add= function (newFood,time){
+            
             var fItem;
 
-            currTable = this.timeTable(time);
+            currTable = timeTable(time);
             fname  = newFood.name;
             famt = newFood.amount;
 
