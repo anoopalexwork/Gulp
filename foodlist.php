@@ -4,13 +4,17 @@
   $dom = new DOMDocument();
   if (!$dom) {echo "domdoc failed"; return;}
   $qfood = $_POST["q"];
-  $qlist= file_get_contents('https://api.nal.usda.gov/fdc/v1/foods/search?api_key='.$apikey.'&format=abridged&query='.$qfood);
+  //echo "got q\n";
+
+
+  $qlist= file_get_contents('https://api.nal.usda.gov/fdc/v1/foods/search?api_key='.$apikey.'&pageSize=250&format=abridged&query='.$qfood);
   if (!$qlist) {echo "Search error..."; return;}
 
   $regex = "/\"fdcId\"...|\"description\".../";
 
   //echo "qlist is ".$qlist;
-  $chunks = getIDList($qlist,$regex);
+  $chunks = getIDList($qlist,$regex); //get 2 column array of ids & descs
+  //$nodupes = cleanList($chunks); //Remove dupes a capitalize
   if (!$chunks) {echo "No results"; return false;}
   //print_r($chunks);
   //walkList($chunks);
@@ -32,13 +36,29 @@
       $desc = $list[$i+1];
       $id = substr($id,0,strpos($id,","));
       $desc = substr($desc,0,strpos($desc,"\","));
-
-
-      array_push($iList,array($id,$desc));
-
+      $desc = str_replace("\\-","-",$desc);
+      $desc = str_replace("\\(","(",$desc);
+      $desc = str_replace("\\)",")",$desc);
+      $desc = strtolower($desc);
+      //echo "Checking name";
+      if (!matchName($noDupes,$desc)) {
+        array_push($noDupes,$desc);
+        $desc[0] = strtoupper($desc[0]);
+        array_push($iList,array($id,$desc));
+        //echo "Added to both lists";
+      }
+      if (count($iList)==50) return $iList;
     }
     if (!is_array($iList)) {echo "iList failed"; return false;}
     return $iList;
+  }
+
+  function matchName($list,$str){
+    for ($i=0;$i<count($list);$i++){
+      if ($str == $list[$i]) { return true;}
+    }
+    //echo "No match";
+    return false;
   }
 
   function htmlSelect($list){
