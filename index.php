@@ -6,6 +6,10 @@
     <section>
         <table id="mainMenu"><tr><td id="dateBox"><b><input id="selectDate" type="date"></input></b></td><td id="foodBox">Food</td><td id="kgBox">Weight</td></tr></table>
     </section>
+    <section id="search">
+      <input type="search" id="gsearch" name="gsearch"><br>
+      <input type="button" value="Search" onclick="document.getElementById('info').innerText = 'Searching.....';  dataObj = new asyncObj('foodlist.php','q',document.getElementById('gsearch').value);"
+    </section>
     <div id="info"></div>
     <section id="bfast">
       <h2><b>Breakfast</b><br></h2>
@@ -23,7 +27,11 @@
     <section id="dinner">
       <p><h2><b>Dinner</b><br>
       <hr>
-      <button class="addNew" onclick="newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button></p></h2><br>
+      <button class="addNew" onclick="alert(document.getElementById('db').innerHTML);//newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button></p></h2><br>
+      <datablock style="display:none" id="db">
+        <item>chicken</item>
+        <item>1 cup</item>
+      </datablock>
     </section>
 
     <section id="extras">

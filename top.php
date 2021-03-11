@@ -8,6 +8,6 @@
     <script "type=text/javascript" src="js/xmlPHP.js"></script>
     <script>
       //dataObj = new asyncObj("sqlconn.php","q","SELECT * FROM dayinfo");
-      dataObj = new asyncObj("foodlist.php","q","eggplant");
+      //dataObj = new asyncObj("foodlist.php","q","eggp");
     </script>
 </head>

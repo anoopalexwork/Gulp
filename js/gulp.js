@@ -17,10 +17,10 @@ function dayList() {
 
         //Add a new Food object to the list
         this.add= function (newFood,time){
-            
+
             var fItem;
 
-            currTable = timeTable(time);
+            currTable = this.timeTable(time);
             fname  = newFood.name;
             famt = newFood.amount;
 

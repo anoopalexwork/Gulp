@@ -11,7 +11,7 @@
 
   //echo "qlist is ".$qlist;
   $chunks = getIDList($qlist,$regex);
-  if (!$chunks) {echo "getIDList failed"; return false;}
+  if (!$chunks) {echo "No results"; return false;}
   //print_r($chunks);
   //walkList($chunks);
   echo htmlSelect($chunks);
@@ -26,6 +26,7 @@
     if (!$list) { echo('preg_split failed'); return false; }
 
     $iList = [];
+    $noDupes = [];
     for ($i=1;$i<count($list);$i+=2){
       $id = $list[$i];
       $desc = $list[$i+1];
