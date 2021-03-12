@@ -24,6 +24,19 @@
 
   function getMacros ($data){
     $esc = preg_quote($data);
+    $fat = getItem($esc,"/lipid/");
+    echo "Fat:".$fat."<BR>";
+    $prot = getItem($esc,"/Protein/");
+    echo "Protein:".$prot."<BR>";
+    $carb = getItem($esc,"/Carbohydrate, by difference/");
+    echo "Carbs:".$carb."<BR>";
+    $water = getItem($esc,"/Water/");
+    echo "Water:".$water."<BR>";
+    $sweet = getItem($esc,"/Sugar/");
+    echo "Sugar:".$sweet."<BR>";
+    $fiber = getItem($esc,"/Fiber/");
+    echo "Fiber:".$fiber."<BR>";
+    /*
     $regex = "/lipid/";
     $list = preg_split($regex,$esc,-1, PREG_SPLIT_NO_EMPTY);
     //echo $esc;
@@ -53,6 +66,17 @@
     //*/
   }
 
+  function getItem($data, $regexp)
+  {
+    $list = preg_split($regexp,$data,-1, PREG_SPLIT_NO_EMPTY);
+    if (!$list) { echo('$regex preg_split failed'); return false; }
+
+    $item = $list[1];
+    $amt = getAmount($item);
+    //echo "amount is ".$amt."<BR>";
+    return $amt;
+  }
+
   function getAmount($str){
     $start = "amount\"\\:";
     //$end =
@@ -61,6 +85,10 @@
     $endpos = strpos($str,"\\.");
     //echo "endpos ".$endpos."<BR>";
     $str = substr($str,$startpos,$endpos-$startpos);
+    if (strlen($str)>3){
+      $endpos = strpos($str,"E");
+      $str = substr($str,0,$endpos);
+    }
     return $str;
 
   }
