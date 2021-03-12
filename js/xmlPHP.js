@@ -1,32 +1,35 @@
 //Define the asyncObj class
 
-var asyncObj = function(file,p,txt){
-var def = txt;
-var params = p+"="+txt;
-var request = asyncRequest();
-request.open("POST", file, true);
-request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//request.setRequestHeader("Content-length", params.length);
-//request.setRequestHeader("Connection", "close");
+var asyncObj = function(file,p,t, htmlid){
+
+  var params = p;
+  //alert("p is "+p);
+  var request = asyncRequest();
+  if (t=="POST") {
+    request.open(t, file, true);
+    request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    //request.setRequestHeader("Content-length", params.length); //request.setRequestHeader("Connection", "close");
+
+  }
+
+  else {request.open(t,file,true);}
 
 
-request.onreadystatechange = function(){
-  if (this.readyState == 4)
-{
-if (this.status == 200)
-{
-if (this.responseText != null)
-{
-  document.getElementById('info').innerHTML = this.responseText;
+  request.onreadystatechange = function(){
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        if (this.responseText != null) {
+          document.getElementById(htmlid).innerHTML = this.responseText;
 
-}
-else alert("Communication error: No data received")
-}
-else alert( "Communication error: " + this.statusText)
-}
-}
-
-request.send(params);
+        }
+        else alert("Communication error: No data received")
+      }
+      else alert( "Communication error: " + this.statusText)
+    }
+  }
+  if (t=="POST") {//alert(params);
+     request.send(params);}
+  else {request.send(null);}
 
 }
 

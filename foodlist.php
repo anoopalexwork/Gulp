@@ -4,13 +4,16 @@
   $dom = new DOMDocument();
   if (!$dom) {echo "domdoc failed"; return;}
   $qfood = $_POST["q"];
+  //$qfood= substr($qfood,0,strpos($qfood,"="));
+  //$qfood="cho";
+  echo $qfood."<BR>";
   //echo "got q\n";
 
 
-  $qlist= file_get_contents('https://api.nal.usda.gov/fdc/v1/foods/search?api_key='.$apikey.'&pageSize=250&format=abridged&query='.$qfood);
+  $qlist= file_get_contents('https://api.nal.usda.gov/fdc/v1/foods/search?api_key='.$apikey.'&pageSize=150&format=abridged&query='.$qfood);
   if (!$qlist) {echo "Search error..."; return;}
 
-  $regex = "/\"fdcId\"...|\"description\".../";
+  $regex = "/\"fdcId\"..|\"description\".../";
 
   //echo "qlist is ".$qlist;
   $chunks = getIDList($qlist,$regex); //get 2 column array of ids & descs
@@ -62,7 +65,7 @@
   }
 
   function htmlSelect($list){
-    $html = "<select id=\"qid\" name=\"qid\">";
+    $html = "<select id=\"qid\" name=\"qid\" onclick=\"dataObj = new asyncObj('macrofind.php?qfid='+this.value,'','GET','macro');\">";
     for ($i=0;$i<count($list);$i++){
       $html.="<option value=\"".$list[$i][0]."\">".$list[$i][1]."</option>";
     }

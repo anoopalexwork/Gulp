@@ -8,6 +8,7 @@
     <script "type=text/javascript" src="js/xmlPHP.js"></script>
     <script>
       //dataObj = new asyncObj("sqlconn.php","q","SELECT * FROM dayinfo");
-      //dataObj = new asyncObj("foodlist.php","q","eggp");
+      //macroObj = new asyncObj("macrofind.php?qfid=522359","","GET","macro");
+      //qObj = new asyncObj("foodlist.php","q=cho","POST","macro");
     </script>
 </head>

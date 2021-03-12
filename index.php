@@ -8,9 +8,10 @@
     </section>
     <section id="search">
       <input type="search" id="gsearch" name="gsearch"><br>
-      <input type="button" value="Search" onclick="document.getElementById('info').innerText = 'Searching.....';  dataObj = new asyncObj('foodlist.php','q',document.getElementById('gsearch').value);"
+      <input type="button" value="Search" onclick="document.getElementById('info').innerText = 'Searching.....'; q='q='+document.getElementById('gsearch').value; dataObj = new asyncObj('foodlist.php',q,'POST','info');">
     </section>
     <div id="info"></div>
+    <div id="macro"></div>
     <section id="bfast">
       <h2><b>Breakfast</b><br></h2>
       <hr>
