@@ -6,7 +6,7 @@
   $qfood = $_POST["q"];
   //$qfood= substr($qfood,0,strpos($qfood,"="));
   //$qfood="cho";
-  echo $qfood."<BR>";
+  //echo $qfood."<BR>";
   //echo "got q\n";
 
 
