@@ -25,17 +25,21 @@
   function getMacros ($data){
     $esc = preg_quote($data);
     $fat = getItem($esc,"/lipid/");
+    $satfat = getItem($esc,"/al saturated/");
+    $goodfat = (($fat-$satfat)/$fat)*100;
     echo "Fat:".$fat."<BR>";
-    $prot = getItem($esc,"/Protein/");
-    echo "Protein:".$prot."<BR>";
     $carb = getItem($esc,"/Carbohydrate, by difference/");
     echo "Carbs:".$carb."<BR>";
+    $prot = getItem($esc,"/Protein/");
+    echo "Protein:".$prot."<BR>";
     $water = getItem($esc,"/Water/");
     echo "Water:".$water."<BR>";
     $sweet = getItem($esc,"/Sugar/");
     echo "Sugar:".$sweet."<BR>";
     $fiber = getItem($esc,"/Fiber/");
     echo "Fiber:".$fiber."<BR>";
+    echo "Good fat%: ".$goodfat."<BR>";
+    echo "Good carbs%: ".((($carb-$sweet)/$carb)*100)."<BR>";
     /*
     $regex = "/lipid/";
     $list = preg_split($regex,$esc,-1, PREG_SPLIT_NO_EMPTY);
@@ -86,8 +90,12 @@
     //echo "endpos ".$endpos."<BR>";
     $str = substr($str,$startpos,$endpos-$startpos);
     if (strlen($str)>3){
-      $endpos = strpos($str,"E");
-      $str = substr($str,0,$endpos);
+      $expos = strpos($str,"E");
+      $str = substr($str,0,$expos);
+      if (strlen($str) > 3){
+        $slashpos = strpos($str,"\\");
+        $str = substr($str,0,$slashpos);
+      }
     }
     return $str;
 
