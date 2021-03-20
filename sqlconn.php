@@ -11,8 +11,8 @@ $conn = new mysqli($hn, $un, $pw, $db);
 if ($conn->connect_error) die("Fatal Error");
 
 echo "Connected....";
-if (isset($_POST['q'])) $query = $_POST['q'];
-//$query = "SELECT * FROM dayinfo";
+//if (isset($_POST['q'])) $query = $_POST['q'];
+$query = "SELECT * FROM Nutrition;";
 $result = $conn->query($query);
 if (!$result) die("Fatal Error");
 $rows = $result->num_rows;
@@ -22,13 +22,13 @@ for ($j = 0 ; $j < $rows ; ++$j) {
 echo "getting....<br>";
   $result->data_seek($j);
 
-  echo 'Date: '.htmlspecialchars($result->fetch_assoc()['date']) .'<br>';
+  echo 'FCDid: '.htmlspecialchars($result->fetch_assoc()['fid']) .'<br>';
 
   $result->data_seek($j);
   echo 'Name: '.htmlspecialchars($result->fetch_assoc()['name']).'<br>';
 
   $result->data_seek($j);
-  echo 'Amount: '.htmlspecialchars($result->fetch_assoc()['amt']).'<br><br>';
+  echo 'Fat: '.htmlspecialchars($result->fetch_assoc()['fat']).'<br><br>';
   $result->data_seek($j);
 }
 $result->close();
@@ -37,3 +37,4 @@ $conn->close();
 echo "Closed connection.";
 
 ?>
+*/

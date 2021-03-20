@@ -1,7 +1,5 @@
 <?php
   $apikey= "bDAddPeLmhGpRo1ZEvUe3C8YfNDRXk1WRsAjcqgA";
-  $dom = new DOMDocument();
-  if (!$dom) {echo "domdoc failed"; return;}
   $qfid = $_GET["qfid"];
   //echo "qfid".$qfid."<BR>";
   //echo "got q\n";
@@ -24,10 +22,22 @@
 
   function getMacros ($data){
     $esc = preg_quote($data);
+
+
+
+
+
     $fat = getItem($esc,"/lipid/");
     $satfat = getItem($esc,"/al saturated/");
-    if ($fat !=0) $goodfat = (($fat-$satfat)/$fat)*100;
+    if ($fat !=0) {
+      $mono = getItem($esc,"/monounsaturated/");
+      $poly = getItem($esc,"/polyunsaturated/"); //Database does not show trans fats in this value
+      $goodfat = (($mono)/$fat)*100;
+    }
+    //$goodfat = (($fat-$satfat)/$fat)*100;
     else $goodfat = "";
+
+    echo "FCDid:".$_GET["qfid"]."<BR>";
     echo "Fat:".$fat."<BR>";
     $carb = getItem($esc,"/Carbohydrate, by difference/");
     echo "Carbs:".$carb."<BR>";

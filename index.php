@@ -1,6 +1,6 @@
 <?php include("top.php"); ?>
 
-<body onload="setupBody()">
+<body onload="setupBody();">
 
     <h1 id="pghead"></h1>
     <section>
@@ -10,35 +10,33 @@
       <input type="search" id="gsearch" name="gsearch"><br>
       <input type="button" value="Search" onclick="document.getElementById('info').innerText = 'Searching.....'; q='q='+document.getElementById('gsearch').value; dataObj = new asyncObj('foodlist.php',q,'POST','info');">
     </section>
-    <div id="info"></div>
-    <div id="macro"></div>
+    <section id="info"> </section>
+    <section id="macro"> </section>
+
+    <section id="nutrilist"></section>
     <section id="bfast">
-      <h2><b>Breakfast</b><br></h2>
+      <p><h2><b>Breakfast</b><br></h2>
       <hr>
-      <button class="addNew" onclick="newFood = new Food('bfast'); today.add(newFood,'bfast'); ">Add New</button></h2><br>
+      <button class="addNew" onclick="newFood = new Food('bfast'); today.add(newFood,'bfast'); ">Add New</button><br></p><br>
     </section>
 
 
     <section id="lunch">
-      <h2><b>Lunch</b><br></h2>
+      <p><h2><b>Lunch</b><br></h2>
       <hr>
-      <button class="addNew" onclick="newFood = new Food('lunch'); today.add(newFood,'lunch');">Add New</button><br>
+      <button class="addNew" onclick="newFood = new Food('lunch'); today.add(newFood,'lunch');">Add New</button><br></p><br>
     </section>
 
     <section id="dinner">
-      <p><h2><b>Dinner</b><br>
+      <p><h2><b>Dinner</b><br></h2>
       <hr>
-      <button class="addNew" onclick="alert(document.getElementById('db').innerHTML);//newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button></p></h2><br>
-      <datablock style="display:none" id="db">
-        <item>chicken</item>
-        <item>1 cup</item>
-      </datablock>
+      <button class="addNew" onclick="newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button></p><br>
     </section>
 
     <section id="extras">
-      <p><h2><b>Extras</b><br>
+      <p><h2><b>Extras</b><br></h2>
       <hr>
-      <button class="addNew" onclick="newFood = new Food('extras'); today.add(newFood,'extras');">Add New</button></p></h2><br>
+      <button class="addNew" onclick="newFood = new Food('extras'); today.add(newFood,'extras');">Add New</button></p><br>
     </section>
 
 </body>

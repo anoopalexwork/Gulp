@@ -65,7 +65,7 @@
   }
 
   function htmlSelect($list){
-    $html = "<select id=\"qid\" name=\"qid\" onclick=\"dataObj = new asyncObj('macrofind.php?qfid='+this.value,'','GET','macro');\">";
+    $html = "<select id=\"qid\" name=\"qid\" onclick=\"document.getElementById('macro').innerHTML='Updating...'; dataObj = new asyncObj('macrofind.php?qfid='+this.value,'','GET','macro');\">";
     for ($i=0;$i<count($list);$i++){
       $html.="<option value=\"".$list[$i][0]."\">".$list[$i][1]."</option>";
     }
