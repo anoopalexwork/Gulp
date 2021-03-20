@@ -94,7 +94,7 @@ function setupBody(){
     var titleTxt = date2Text() + ` - Gulp.3`;
     document.title = titleTxt;
     document.getElementById("pghead").innerHTML = `<b>${titleTxt}</b>`;
-    //loadNutrition();
+    loadNutrition();
     //document.getElementById("nutrilist").innerHTML = `<p>hello</p>`;
     //this.loadNutrition();
     //document.getElementById("dateBox").innerHTML = //date2Text();
@@ -107,5 +107,5 @@ function setupBody(){
 }
 
 function loadNutrition(){
-  //nutri = new asyncObj("sqlconn.php","q=looad","POST","nutrilist");
+  nutri = new asyncObj("sqlpdo.php","q=looad","POST","nutrilist");
 }
