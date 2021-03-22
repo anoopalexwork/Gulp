@@ -4,7 +4,7 @@
 
     <h1 id="pghead"></h1>
     <section>
-        <table id="mainMenu"><tr><td id="dateBox"><b><input id="selectDate" type="date"></input></b></td><td id="foodBox">Food</td><td id="kgBox">Weight</td></tr></table>
+        <table id="mainMenu"><tr><td id="dateBox"><b><input id="selectDate" type="date" onchange=" setupBody(this.value)"></input></b></td><td id="foodBox">Food</td><td id="kgBox">Weight</td></tr></table>
     </section>
     <section id="search">
       <input type="search" id="gsearch" name="gsearch"><br>
@@ -15,7 +15,7 @@
 
     <section id="nutrilist"></section>
     <section id="bfast">
-      <p><h2><b>Breafast</b><br></h2>
+      <p><h2><b>Breakfast</b><br></h2>
       <hr>
       <button class="addNew" onclick="newFood = new Food('bfast'); today.add(newFood,'bfast'); ">Add New</button><br></p><br>
     </section>
@@ -30,7 +30,7 @@
     <section id="dinner">
       <p><h2><b>Dinner</b><br></h2>
       <hr>
-      <button class="addNew" onclick="newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button></p><br>
+      <button class="addNew" onclick="newFood = new Food('dinner'); today.add(newFood,'dinner');">Add New</button><br></p><br>
     </section>
 
     <section id="extras">

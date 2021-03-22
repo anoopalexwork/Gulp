@@ -6,13 +6,14 @@ function Food(time) {
 
 }
 
-function dayList() {
+function dayList(theDay) {
         //Create lists for different times
         this.bfast = new Array();
         this.lunch = new Array();
         this.dinner = new Array();
         this.extras = new Array();
         this.suggest = new Array();
+        this.currList = new Array();
         const title = {"bfast":"Breakfast", "lunch":"Lunch", "dinner":"Dinner", "extras":"Extras"};
 
         //Add a new Food object to the list
@@ -77,24 +78,33 @@ function dayList() {
 today = new dayList();
 
 //Return text version of current Date object for the day
-function date2Text(){
-    const months = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-    const days = new Array("Sun","Mon","Tue","Wed", "Thu", "Fri", "Sat");
-    var dateObj = new Date();
-    var strDate = months[dateObj.getMonth()] + " " +dateObj.getDate() + "-" + days[dateObj.getDay()];
-    return strDate;
+function date2Text(numDate){
+    /*const months = new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
+    const days = new Array("Sun","Mon","Tue","Wed", "Thu", "Fri", "Sat");*/
+    if (numDate!=null){
+        dateStr = numDate.split("-");
+        theYear = dateStr[0];
+        if (dateStr[1].startsWith("0")) {theMonth = dateStr[1].substr(1,1);} else {theMonth=dateStr[1];}
+        if (dateStr[2].startsWith("0")) {theDay = dateStr[2].substr(1,1);} else {theMonth=dateStr[2];}
+        dateObj = new Date(theYear,theMonth-1,theDay);
+    
+    }
+    else {dateObj = new Date();  }
+    //var strDate = months[dateObj.getMonth()] + " " +dateObj.getDate() + "-" + days[dateObj.getDay()];
+    return dateObj.toDateString();
 
 }
 
 
 
 //Draw header section with textual date
-function setupBody(){
+function setupBody(theDate){
 
-    var titleTxt = date2Text() + ` - Gulp.3`;
+    if (theDate==null) {theDate=date2Text()} else {theDate=date2Text(theDate);}
+    titleTxt = theDate + ` - Gulp.3`;
     document.title = titleTxt;
     document.getElementById("pghead").innerHTML = `<b>${titleTxt}</b>`;
-    loadNutrition();
+    //loadNutrition();
     //document.getElementById("nutrilist").innerHTML = `<p>hello</p>`;
     //this.loadNutrition();
     //document.getElementById("dateBox").innerHTML = //date2Text();

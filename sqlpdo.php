@@ -20,7 +20,7 @@
   else {echo "Got recs<BR>";}
   foreach ($records as $row){
     //printf("{$row['fid']} {$row['name']}<BR>"); 
-    echo $row['fid']." ".$row['name']."<BR>";
+    echo $row['fid']."|".$row['name']."<BR>";
   }
 
   ?>
