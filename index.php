@@ -15,7 +15,7 @@
 
     <section id="nutrilist"></section>
     <section id="bfast">
-      <p><h2><b>Breakfast</b><br></h2>
+      <p><h2><b>Breafast</b><br></h2>
       <hr>
       <button class="addNew" onclick="newFood = new Food('bfast'); today.add(newFood,'bfast'); ">Add New</button><br></p><br>
     </section>
