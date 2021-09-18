@@ -85,7 +85,7 @@ function date2Text(numDate){
         dateStr = numDate.split("-");
         theYear = dateStr[0];
         if (dateStr[1].startsWith("0")) {theMonth = dateStr[1].substr(1,1);} else {theMonth=dateStr[1];}
-        if (dateStr[2].startsWith("0")) {theDay = dateStr[2].substr(1,1);} else {theMonth=dateStr[2];}
+        if (dateStr[2].startsWith("0")) {theDay = dateStr[2].substr(1,1);} else {theDay=dateStr[2];}
         dateObj = new Date(theYear,theMonth-1,theDay);
     
     }
@@ -100,20 +100,12 @@ function date2Text(numDate){
 //Draw header section with textual date
 function setupBody(theDate){
 
-    if (theDate==null) {theDate=date2Text()} else {theDate=date2Text(theDate);}
-    titleTxt = theDate + ` - Gulp.3`;
+    theDate=date2Text(theDate);
+    titleTxt = theDate + ` - CRUDGulp`;
     document.title = titleTxt;
     document.getElementById("pghead").innerHTML = `<b>${titleTxt}</b>`;
     //loadNutrition();
-    //document.getElementById("nutrilist").innerHTML = `<p>hello</p>`;
-    //this.loadNutrition();
-    //document.getElementById("dateBox").innerHTML = //date2Text();
-    //dateBox.innerText = date2Text();
-
-    //setContent();
-
-
-
+    
 }
 
 function loadNutrition(){

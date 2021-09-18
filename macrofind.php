@@ -29,10 +29,11 @@
 
     $fat = getItem($esc,"/lipid/");
     $satfat = getItem($esc,"/al saturated/");
+	$goodfat="";
     if ($fat !=0) {
       $mono = getItem($esc,"/monounsaturated/");
       $poly = getItem($esc,"/polyunsaturated/"); //Database does not show trans fats in this value
-      $goodfat = (($mono)/$fat)*100;
+      //$goodfat = (($mono)/$fat)*100;
     }
     //$goodfat = (($fat-$satfat)/$fat)*100;
     else $goodfat = "";
