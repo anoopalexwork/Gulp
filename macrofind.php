@@ -1,4 +1,5 @@
 <?php
+  error_reporting(~E_WARNING); //Do not display warnings
   $apikey= "bDAddPeLmhGpRo1ZEvUe3C8YfNDRXk1WRsAjcqgA";
   $qfid = $_GET["qfid"];
   //echo "qfid".$qfid."<BR>";
@@ -29,14 +30,14 @@
 
     $fat = getItem($esc,"/lipid/");
     $satfat = getItem($esc,"/al saturated/");
-	$goodfat="";
-    if ($fat !=0) {
+	
+    if ($fat!="") {
       $mono = getItem($esc,"/monounsaturated/");
       $poly = getItem($esc,"/polyunsaturated/"); //Database does not show trans fats in this value
-      //$goodfat = (($mono)/$fat)*100;
+      if ($mono!="" && $fat!=0) { $goodfat = (($mono)/$fat)*100; }
     }
-    //$goodfat = (($fat-$satfat)/$fat)*100;
-    else $goodfat = "";
+    if ($fat!="") { $goodfat = (($fat-$satfat)/$fat)*100; }
+    
 
     echo "FCDid:".$_GET["qfid"]."<BR>";
     echo "Fat:".$fat."<BR>";
@@ -44,16 +45,16 @@
     echo "Carbs:".$carb."<BR>";
     $prot = getItem($esc,"/Protein/");
     echo "Protein:".$prot."<BR>";
-    $water = getItem($esc,"/Water/");
-    echo "Water:".$water."<BR>";
+    /*$water = getItem($esc,"/Water/");
+    echo "Water:".$water."<BR>";*/
     $sweet = getItem($esc,"/Sugars, total/");
     echo "Sugar:".$sweet."<BR>";
     $fiber = getItem($esc,"/Fiber/");
     echo "Fiber:".$fiber."<BR>";
     echo "Good fat%: ".$goodfat."<BR>";
-    echo "Good carbs%: ".(($fiber/$carb)*100)."<BR>";
-    //echo "Good carbs%: ".((($carb-$sweet)/$carb)*100)."<BR>";
-    /*
+    if ($carb!="" ) { echo "Good carbs%: ".(($fiber/$carb)*100)."<BR>";
+    echo "Good carbs%: ".((($carb-$sweet)/$carb)*100)."<BR>";
+    }
     $regex = "/lipid/";
     $list = preg_split($regex,$esc,-1, PREG_SPLIT_NO_EMPTY);
     //echo $esc;
@@ -85,7 +86,7 @@
 
   function getItem($data, $regexp)
   {
-    $list = preg_split($regexp,$data,-1, PREG_SPLIT_NO_EMPTY);
+    $list = preg_split($regexp,$data,-1,PREG_SPLIT_NO_EMPTY);
     if (!$list) { echo('$regex preg_split failed'); return false; }
 
     $item = $list[1];
